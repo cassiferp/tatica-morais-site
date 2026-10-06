@@ -1,0 +1,185 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-display: "Playfair Display", serif;
+  --font-sans: "Jost", "Aileron", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Dark by default — sophisticated agency palette */
+  --background: oklch(0.16 0.005 250);
+  --foreground: oklch(0.97 0.005 100);
+
+  --surface: oklch(0.20 0.006 250);
+  --surface-elevated: oklch(0.24 0.008 250);
+
+  --card: oklch(0.20 0.006 250);
+  --card-foreground: oklch(0.97 0.005 100);
+  --popover: oklch(0.20 0.006 250);
+  --popover-foreground: oklch(0.97 0.005 100);
+
+  /* Mint accent #77caa7 */
+  --primary: oklch(0.79 0.09 158);
+  --primary-foreground: oklch(0.15 0.01 250);
+
+  --secondary: oklch(0.26 0.008 250);
+  --secondary-foreground: oklch(0.97 0.005 100);
+
+  --muted: oklch(0.24 0.006 250);
+  --muted-foreground: oklch(0.68 0.01 250);
+
+  --accent: oklch(0.79 0.09 158);
+  --accent-foreground: oklch(0.15 0.01 250);
+
+  --destructive: oklch(0.62 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(0.30 0.008 250 / 60%);
+  --input: oklch(0.28 0.008 250);
+  --ring: oklch(0.79 0.09 158);
+
+  --hairline: oklch(1 0 0 / 8%);
+  --gradient-radial: radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.79 0.09 158 / 0.18), transparent 70%);
+  --shadow-glow: 0 0 60px -10px oklch(0.79 0.09 158 / 0.35);
+  --shadow-elegant: 0 30px 80px -20px oklch(0 0 0 / 0.6);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+}
+
+@utility font-display {
+  font-family: var(--font-display);
+}
+
+@utility hairline {
+  border-color: var(--hairline);
+}
+
+@utility text-balance {
+  text-wrap: balance;
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes reveal-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes reveal-scale {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes draw-line {
+  0% { width: 0; opacity: 0; }
+  20% { opacity: 1; }
+  60% { width: 9rem; opacity: 1; }
+  100% { width: 9rem; opacity: 1; }
+}
+.draw-line {
+  width: 0;
+  animation: draw-line 1100ms cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation-delay: 250ms;
+}
+@keyframes caret-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.animate-caret-blink {
+  animation: caret-blink 1s steps(1, end) infinite;
+}
+
+.reveal {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  animation: reveal-up 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.reveal-fade.is-visible {
+  animation: reveal-fade 1s ease-out both;
+}
+.reveal-scale.is-visible {
+  animation: reveal-scale 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-float-slow { animation: float-slow 6s ease-in-out infinite; }
+.animate-marquee { animation: marquee 30s linear infinite; }
+
+.perspective-1000 { perspective: 1000px; }
+.preserve-3d { transform-style: preserve-3d; }
+.backface-hidden { backface-visibility: hidden; }
+.rotate-y-180 { transform: rotateY(180deg); }
+.flip-card:hover .flip-card-inner { transform: rotateY(180deg); }
+
+a, button {
+  transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-fade, .reveal-scale { opacity: 1 !important; animation: none !important; }
+  .animate-float-slow, .animate-marquee { animation: none !important; }
+}
