@@ -229,16 +229,50 @@ function Hero() {
 }
 
 function Logos() {
-  const items = ["PLANTE VIDA", "DURÃES", "CLINSAN", "KARTAL", "MAXXI VEÍCULOS"];
+  const items = [
+    "PLANTE VIDA",
+    "DURÃES",
+    "CLINSAN",
+    "KARTAL",
+    "MAXXI VEÍCULOS",
+    "Keslayne Moraes",
+    "Dra. Aline Valério",
+    "Comac Farma",
+    "Dra. Laricy Dias",
+    "FarmaÉtica",
+    "Dra. Tassiana Cardoso",
+    "Supermercado Paizante",
+    "381 Motos",
+    "Dra. Camila Freitas",
+    "Farmácia do Povo",
+    "Uniodonto",
+    "K2 Academia",
+    "Dr. Dexther",
+    "Letícia Santos",
+    "Global Mobiliadora",
+    "Escosan",
+    "Zanira Alves",
+    "Dr. Kevin Brito",
+  ];
+
   return (
     <section className="border-y border-border/60 py-10">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-14 gap-y-4 px-6">
-        <span className="text-xs uppercase tracking-[0.25em] text-muted-foreground">Marcas que confiam</span>
-        {items.map((i, idx) => (
-          <Reveal as="span" key={i} delay={idx * 80} className="font-display text-lg tracking-widest text-muted-foreground/70 transition-colors hover:text-primary">
-            {i}
-          </Reveal>
-        ))}
+      <div className="mx-auto max-w-7xl px-6">
+        <p className="mb-6 text-center text-xs uppercase tracking-[0.25em] text-muted-foreground">
+          Marcas que confiam
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-x-14 gap-y-4">
+          {items.map((i, idx) => (
+            <Reveal
+              as="span"
+              key={i}
+              delay={idx * 80}
+              className="font-display text-lg uppercase tracking-widest text-muted-foreground/70 transition-colors hover:text-primary"
+            >
+              {i}
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );
